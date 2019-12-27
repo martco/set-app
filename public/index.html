@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/foundation.css">
+
+  <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/set-game.css">
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -24,20 +25,40 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <title>React App</title>
+</head>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<body>
+  <div class="set-layout set-hard-puzzle">
+    <div class="set-game-layout">
+      <div class="set-gameplay-box">
+        <div class="set-message solved"></div>
+        <div id="root"></div>
+      </div>
+    </div>
+  </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+
+
+    <svg class="set-defs">
+      <defs>
+          <pattern id="red-stripes" y="12.25" width="6" height="17" patternUnits="userSpaceOnUse">
+              <rect width="6" height="5.6000000000000005" fill="rgb(239, 62, 66)"></rect>
+          </pattern>
+          <pattern id="green-stripes" y="12.25" width="6" height="17" patternUnits="userSpaceOnUse">
+              <rect width="6" height="5.6000000000000005" fill="rgb(0, 178, 89)"></rect>
+          </pattern>
+          <pattern id="purple-stripes" y="12.25" width="6" height="17" patternUnits="userSpaceOnUse">
+              <rect width="6" height="5.6000000000000005" fill="rgb(73, 47, 146)"></rect>
+          </pattern>
+          <path id="diamond-shape" d="M1 74L35 2l36 73-36 74z"></path>
+          <path id="oval-shape" d="M36 149c-19 0-34-15-34-33V35C2 16 17 1 36 1s34 15 34 34v81c0 18-15 33-34 33z">
+          </path>
+          <path id="squiggle-shape"
+              d="M9.64,77.38C15.73,63.23,19.46,50.9,12,33.71,6.57,21.25-3.54,13.79,1.84,6.76c7.06-9.19,31.8-10.89,50.79,6.9,18.12,17,13.77,49.45,6.14,64.12-7,13.55-4.38,29.55,8.37,48.23C79.21,143.69,46,156.12,20.42,141.67-1.76,129.1-2.46,105.54,9.64,77.38Z">
+          </path>
+      </defs>
+  </svg>
+</body>
+
 </html>
