@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 class SetCard extends Component {
   RGBs = {
-    green: "rgb(0, 178, 89)"
+    green: "rgb(0, 178, 89)",
+    red: "rgb(239, 62, 66)",
+    purple: "rgb(73, 47, 146)"
   } 
   getFill({shading, color}) {
     const shadingSet = c=> `url(#${c}-stripes)`
@@ -44,10 +46,10 @@ class SetCard extends Component {
 }
 
 SetCard.defaultProps = {
-  shape: 'oval',
+  shape: 'diamond',
   number: 3,
-  color: 'green',
-  shading: 'empty'
+  color: 'purple',
+  shading: 'striped'
 }
 
 export default SetCard;
