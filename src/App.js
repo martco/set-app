@@ -30,20 +30,13 @@ class App extends React.Component {
     solid: "solid"
   };
 
-  // for a range of cards before striped
-  skipThroughCards() {
-    [Array(1)].forEach(i => {
-      this.downloadSetCard(0);
-    });
-  }
-
-  async downloadSetCards(index) {
-    if (index < 3) {
+  async downloadSetCards(index = 0) {
+    if (index < cards.length) {
       this.setState({ currentCardIndex: index }, async () => {
         c2i({ 
-          canvas: await h2c(document.querySelector("#card")),
+          canvas: await h2c(this.setCardRef.current),
           filename: `${index+1}.jpeg`,
-          cb: ()=> this.downloadSetCard(index + 1)
+          cb: ()=> this.downloadSetCards(index + 1)
         });
       });
     }
@@ -62,11 +55,11 @@ class App extends React.Component {
     const card = cards[this.state.currentCardIndex]
     return (
       <section>
-        <ul id="card" className="set-board spaced-cards fit-3">
+        <ul id="card" ref={this.setCardRef} className="set-board spaced-cards fit-3">
           <SetCard {...this.getPropsForSetCard(card)} />
         </ul>
         <div>
-          <button onClick={() => this.downloadSetCards(0)}>
+          <button onClick={() => this.downloadSetCards()}>
             Download cards
           </button>
         </div>
