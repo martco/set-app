@@ -37,19 +37,15 @@ class App extends React.Component {
     });
   }
 
-  async downloadSetCard(index) {
+  async downloadSetCards(index) {
     if (index < 3) {
-      c2i({ 
-        canvas: await h2c(document.querySelector("#card")),
-        filename: `${index+1}.jpeg`,
-        cb: (filename)=> {
-          this.setState({ currentCardIndex: index }, () => {
-            this.downloadSetCard(index + 1);
-          });
-        }
+      this.setState({ currentCardIndex: index }, async () => {
+        c2i({ 
+          canvas: await h2c(document.querySelector("#card")),
+          filename: `${index+1}.jpeg`,
+          cb: ()=> this.downloadSetCard(index + 1)
+        });
       });
-
-
     }
   }
 
@@ -70,7 +66,7 @@ class App extends React.Component {
           <SetCard {...this.getPropsForSetCard(card)} />
         </ul>
         <div>
-          <button onClick={() => this.downloadSetCard(0)}>
+          <button onClick={() => this.downloadSetCards(0)}>
             Download cards
           </button>
         </div>
