@@ -1,7 +1,8 @@
 import { saveAs } from 'file-saver';
 
-export default ({canvas}) => {
+export default ({canvas, filename, cb}) => {
   canvas.toBlob((blob) => {
-    saveAs(blob, "test.png");
+    saveAs(blob, filename);
+    cb(filename);
   });
 };

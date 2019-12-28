@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import h2c from "./HTML2Canvas";
-import c2i from "./Canvas2Image";
 
 class SetCard extends Component {
   RGBs = {
@@ -18,10 +16,6 @@ class SetCard extends Component {
     if (shading === "solid") {
       return this.RGBs[color];
     } else return "white";
-  }
-
-  async componentDidMount() {
-    // c2i(await h2c(document.querySelector(".set-card")))
   }
 
   getContents({ shading, color }) {
@@ -79,15 +73,14 @@ class SetCard extends Component {
   getPathForShape({ shape, children, props }) {
     return {
       diamond: (
-        <svg viewBox="-7 -7 82 164" >
+        <svg viewBox="-7 -7 82 164">
           <path {...props} id="diamond-shape" d="M1 74L35 2l36 73-36 74z">
-            
             {children}
           </path>
         </svg>
       ),
       oval: (
-        <svg viewBox="-7 -7 82 164" >
+        <svg viewBox="-7 -7 82 164">
           <path
             {...props}
             id="oval-shape"
@@ -98,12 +91,13 @@ class SetCard extends Component {
         </svg>
       ),
       squiggle: (
-        <svg viewBox="-7 -7 82 164" >
+        <svg viewBox="-7 -7 82 164">
           <path
             {...props}
             id="squiggle-shape"
             d="M9.64,77.38C15.73,63.23,19.46,50.9,12,33.71,6.57,21.25-3.54,13.79,1.84,6.76c7.06-9.19,31.8-10.89,50.79,6.9,18.12,17,13.77,49.45,6.14,64.12-7,13.55-4.38,29.55,8.37,48.23C79.21,143.69,46,156.12,20.42,141.67-1.76,129.1-2.46,105.54,9.64,77.38Z"
-          >{children}
+          >
+            {children}
           </path>
         </svg>
       )
@@ -116,27 +110,22 @@ class SetCard extends Component {
     return (
       <li className="set-board-card" style={{ order: 0 }}>
         <div className="set-card">
-          {[...Array(number)].map(() => {
-            const children =
-              this.shading === "striped"
-                ? []
-                : [];
-            return this.getPathForShape({
-              shape,
-              props: {
-                stroke: this.RGBs[color],
-                fill: this.getFill({shading, color}),
-                strokeWidth: "7"
-              },
-              children
-            });
-          })}
+            {[...Array(number)].map(() => {
+              const children = this.shading === "striped" ? [] : [];
+              return this.getPathForShape({
+                shape,
+                props: {
+                  stroke: this.RGBs[color],
+                  fill: this.getFill({ shading, color }),
+                  strokeWidth: "7"
+                },
+                children
+              });
+            })}
         </div>
       </li>
     );
   }
 }
-
-
 
 export default SetCard;
