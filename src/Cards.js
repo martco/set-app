@@ -1,4 +1,4 @@
-export default [
+const cards = [
   ["solid", "squiggles", "red", "one"],
   ["solid", "squiggles", "red", "two"],
   ["solid", "squiggles", "red", "three"],
@@ -81,3 +81,29 @@ export default [
   ["outlined", "ovals", "green", "two"],
   ["outlined", "ovals", "green", "three"]
 ];
+
+const definitionMap = {
+  squiggles: "squiggle",
+  ovals: "oval",
+  diamonds: "diamond",
+  one: 1,
+  two: 2,
+  three: 3,
+  red: "red",
+  purple: "purple",
+  green: "green",
+  striped: "striped",
+  outlined: "outlined",
+  solid: "solid"
+};
+
+const getPropsForSetCard = card => {
+  return {
+    shape: definitionMap[card[1]],
+    color: definitionMap[card[2]],
+    number: definitionMap[card[3]],
+    shading: definitionMap[card[0]]
+  };
+};
+
+export default cards.map(getPropsForSetCard);

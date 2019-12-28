@@ -2,6 +2,8 @@ import React from "react";
 import SetCard from "./SetCard";
 import h2c from "./HTML2Canvas";
 import c2i from "./Canvas2Image";
+import saveFilesToFolder from "./Zip"
+
 // import static list of cards
 import cards from "./Cards";
 
@@ -11,52 +13,47 @@ class App extends React.Component {
 
     this.setCardRef = React.createRef();
     this.state = {
-      currentCardIndex: 0
+      currentCardIndex: 0,
+      rotationDegrees: 0
     };
   }
 
-  definitionMap = {
-    squiggles: "squiggle",
-    ovals: "oval",
-    diamonds: "diamond",
-    one: 1,
-    two: 2,
-    three: 3,
-    red: "red",
-    purple: "purple",
-    green: "green",
-    striped: "striped",
-    outlined: "outlined",
-    solid: "solid"
-  };
+  componentDidMount() {
+    saveFilesToFolder({
+      files: [
+        {
+          filename: "hello.txt",
+          data: "Hello World"
+        }
+      ]
+    })
+  }
 
   async downloadSetCards(index = 0) {
+    let generatedImages = []
     if (index < cards.length) {
       this.setState({ currentCardIndex: index }, async () => {
-        c2i({ 
+        c2i({
           canvas: await h2c(this.setCardRef.current),
-          filename: `${index+1}.jpeg`,
-          cb: ()=> this.downloadSetCards(index + 1)
+          filename: `${index + 1}.jpeg`,
+          cb: (generatedImage) => this.downloadSetCards(index + 1)
         });
       });
     }
-  }
 
-  getPropsForSetCard(card) {
-    return {
-      shape: this.definitionMap[card[1]],
-      color: this.definitionMap[card[2]],
-      number: this.definitionMap[card[3]],
-      shading: this.definitionMap[card[0]]
-    };
+    saveFilesToFolder(generatedImages);
   }
 
   render() {
-    const card = cards[this.state.currentCardIndex]
+    const card = cards[this.state.currentCardIndex];
     return (
       <section>
-        <ul id="card" ref={this.setCardRef} className="set-board spaced-cards fit-3">
-          <SetCard {...this.getPropsForSetCard(card)} />
+        <ul
+          id="card"
+          ref={this.setCardRef}
+          className="set-board spaced-cards fit-3"
+        >
+          <SetCard {...card} />
         </ul>
         <div>
           <button onClick={() => this.downloadSetCards()}>
