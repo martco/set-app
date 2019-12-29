@@ -2,7 +2,6 @@ import React from "react";
 import SetCard from "./SetCard";
 import h2c from "./HTML2Canvas";
 import c2i from "./Canvas2Image";
-import saveFilesToFolder from "./Zip"
 
 // import static list of cards
 import cards from "./Cards";
