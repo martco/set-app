@@ -56,8 +56,26 @@ class App extends React.Component {
           <SetCard {...card} />
         </ul>
         <div>
+          <button
+            onClick={() =>
+              this.setState({
+                currentCardIndex: this.state.currentCardIndex - 1
+              })
+            }
+          >
+            Previous ard
+          </button>
           <button onClick={() => this.downloadSetCards()}>
             Download cards
+          </button>
+          <button
+            onClick={() =>
+              this.setState({
+                currentCardIndex: this.state.currentCardIndex + 1
+              })
+            }
+          >
+            Next Card
           </button>
         </div>
       </section>
