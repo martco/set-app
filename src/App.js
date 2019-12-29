@@ -18,30 +18,17 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    saveFilesToFolder({
-      files: [
-        {
-          filename: "hello.txt",
-          data: "Hello World"
-        }
-      ]
-    })
-  }
-
-  async downloadSetCards(index = 0) {
-    let generatedImages = []
+  async downloadSetCards(index = 0, treatment = "default") {
     if (index < cards.length) {
       this.setState({ currentCardIndex: index }, async () => {
         c2i({
           canvas: await h2c(this.setCardRef.current),
-          filename: `${index + 1}.jpeg`,
-          cb: (generatedImage) => this.downloadSetCards(index + 1)
+          index: index + 1,
+          treatment,
+          cb: () => this.downloadSetCards(index + 1)
         });
       });
     }
-
-    saveFilesToFolder(generatedImages);
   }
 
   render() {
