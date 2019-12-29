@@ -18,59 +18,20 @@ class SetCard extends Component {
     } else return "white";
   }
 
-  getContents({ shading, color }) {
-    if (shading === "striped") {
-      return {
-        red: (
-          <pattern
-            id="red-stripes"
-            y="12.25"
-            width="6"
-            height="17"
-            patternUnits="userSpaceOnUse"
-          >
-            <rect
-              width="6"
-              height="5.6000000000000005"
-              fill="rgb(239, 62, 66)"
-            ></rect>
-          </pattern>
-        ),
-        green: (
-          <pattern
-            id="green-stripes"
-            y="12.25"
-            width="6"
-            height="17"
-            patternUnits="userSpaceOnUse"
-          >
-            <rect
-              width="6"
-              height="5.6000000000000005"
-              fill="rgb(0, 178, 89)"
-            ></rect>
-          </pattern>
-        ),
-        purple: (
-          <pattern
-            id="purple-stripes"
-            y="12.25"
-            width="6"
-            height="17"
-            patternUnits="userSpaceOnUse"
-          >
-            <rect
-              width="6"
-              height="5.6000000000000005"
-              fill="rgb(73, 47, 146)"
-            ></rect>
-          </pattern>
-        )
-      }[color];
-    }
+  getStripedImage({ shape, color }) {
+    return (
+      <img
+        width={210}
+        alt={shape + color}
+        src={`https://i.ibb.co/cFmpQ5g/green-oval-1.png`}
+      />
+    );
   }
 
-  getPathForShape({ shape, children, props }) {
+  getPathForShape({ shape, shading, color, children, props }) {
+    if (shading === "striped") {
+      return this.getStripedImage({ shape, color });
+    }
     return {
       diamond: (
         <svg viewBox="-7 -7 82 164">
