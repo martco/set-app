@@ -23,7 +23,7 @@ class SetCard extends Component {
       <img
         width={210}
         alt={shape + color}
-        src={`https://i.ibb.co/cFmpQ5g/green-oval-1.png`}
+        src={`/${color}_${shape}.png`}
       />
     );
   }
@@ -75,6 +75,8 @@ class SetCard extends Component {
               const children = this.shading === "striped" ? [] : [];
               return this.getPathForShape({
                 shape,
+                shading, 
+                color, 
                 props: {
                   stroke: this.RGBs[color],
                   fill: this.getFill({ shading, color }),
